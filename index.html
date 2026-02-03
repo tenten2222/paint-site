@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>やさしい塗装屋さん</title>
+  <style>
+    :root {
+      --main: #f2a65a;
+      --text: #333;
+      --bg: #fffaf4;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--main);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 2rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (min-width: 768px) {
+      .services {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>はじめての塗装でも、<br>安心して相談できる塗装屋です</h1>
+    <p>おうちも、お店も。ていねいに、やさしく仕上げます。</p>
+    <a href="#contact" class="btn">まずは無料で相談する</a>
+  </header>
+
+  <section>
+    <h2>対応していること</h2>
+    <div class="services">
+      <div class="card">🏠 戸建て住宅の外壁・屋根塗装</div>
+      <div class="card">🏢 店舗・事務所の塗装</div>
+      <div class="card">🧱 部分補修・小さな塗り替え</div>
+      <div class="card">🎨 色の相談・アドバイス</div>
+    </div>
+    <p style="margin-top:1rem;">
+      「こんな小さいこと頼んでいいのかな？」<br>
+      と思う内容でも、気軽に聞いてください。
+    </p>
+  </section>
+
+  <section>
+    <h2>私たちの想い</h2>
+    <p>
+      塗装は、ただ色を塗るだけの作業ではなく、<br>
+      大切な建物を長く守るための仕事だと考えています。
+    </p>
+    <p>
+      はじめてで不安な方にも、<br>
+      専門用語を使わず、分かる言葉で説明することを大切にしています。
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>お問い合わせ</h2>
+    <p>
+      相談だけでも大丈夫です。<br>
+      しつこい営業はしませんので、安心してご連絡ください。
+    </p>
+    <p>
+      ▶ <a href="https://forms.gle/xxxxxxxx" target="_blank">お問い合わせフォームはこちら</a>
+    </p>
+  </section>
+
+  <footer>
+    © やさしい塗装屋さん
+  </footer>
+</body>
+</html>
