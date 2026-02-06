@@ -1,135 +1,158 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>やさしい塗装屋さん</title>
-  <style>
-    :root {
-      --main: #f2a65a;
-      --text: #333;
-      --bg: #fffaf4;
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <!-- スマホ画面に合わせて表示 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- ブラウザのタブ名/Google検索結果のタイトル/ブックマーク名 -->
+        <title>〇〇塗装｜外壁・屋根塗装</title>
+        <style>
+            /* CSS */
+            /* ===== ベース ===== */
+            * {
+                box-sizing: border-box; /* レイアウト事故防止 */
+            }
+            body {  /* 全体の設定 */
+                margin: 0;  /* ブラウザ標準の余白をリセット */
+                font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+                line-height: 1.7;   /* 一行の高さ */
+                color: #333;
+            }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.7;
-    }
+            /* ===== ヘッダー ===== */
+            .site-header {
+                position: sticky;   /* スクロールしても上に残る */
+                top: 0;
+                background: #fff;
+                border-bottom: 1px solid #eee;
+                z-index: 100;   /* 他の要素の上に出る */
+            }
+            .header-inner {
+                max-width: 1100px;  /* 画面が広くても広がりすぎない */
+                margin: 0 auto; /* ヘッダーの中身が真ん中に来る */
+                padding: 1rem;  /* 内側の余白 */
+                display: flex;  /* 中の要素を「横並び」にするスイッチ(これがないと縦に並ぶ) */
+                align-items: center;    /* ロゴと文字の高さが揃う */
+                justify-content: space-between; /* 左右に振り分ける */
+            }
+            .logo {
 
-    header {
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
+            }
+            /* ul → 並びと間隔, a → 文字の見た目 (両方ないと「普通のリスト」に戻る) */
+            .nav ul {
+                display: flex;  /* メニューを横並びにする */
+                gap: 1.5rem;    /* メニュー同士の間隔(marginを1個ずつ書かなくていい) */
+                list-style: none;   /* 黒い「・」を消す */
+                margin: 0;
+                padding: 0;
+            }
+            .nav a {
+                text-decoration: none;  /* リンクの下線を消す */
+                color: #333;
+                font-weight: 500;   /* 少し太くして読みやすく */
+            }
+            .menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.6rem;
+                cursor: pointer;    /* マウスを乗せた時指のマーク（👉）にする */
+            }
+            /* スマホ対応 */
+            @media (max-width: 768px) {
+                .nav {
+                    display: none;
+                }
+                .nav.open {
+                    display: block; /* .open が付いたら表示する(JavaScriptがやる) */
+                }
+                .nav ul {
+                    flex-direction: column; /* 横並び → 縦並びに変更 */
+                    gap: 1rem;
+                }
+                .menu-btn {
+                    display: block; /* ハンバーガーボタンを表示 */
+                }
+            }
 
-    header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
+            /* ===== メイン ===== */
+            .picture {
+                position: relative;
+                height: 60vh;   /* 画面の6割の高さ */
+                overflow: hidden;
+            }
+            .slide {
+                position: absolute; /* 画像を全部重ねる */
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;  /* 画像をトリミングして全面表示 */
+                opacity: 0; /* 表示 / 非表示 */
+                transition: opacity 1s ease;    /* フワッと切り替え */
+            }
+            .slide.active {
+                opacity: 1;
+            }
+        </style>
+    </head>
 
-    header p {
-      font-size: 1rem;
-      color: #555;
-    }
+    <body>
+        <header class="site-header">
+            <!-- 意味はない、でも必要な箱（横並びにする,幅を制限する,中央寄せする） -->
+            <div class="header-inner">
+                <h1 class="logo">
+                    <img src="images/logo_company.png" alt="会社名ロゴ">
+                </h1>
 
-    .btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.8rem 1.5rem;
-      background: var(--main);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 999px;
-      font-weight: bold;
-    }
+                <nav class="nav">
+                    <ul>
+                        <li><a href="#">業務内容</a></li>
+                        <li><a href="#">施工事例</a></li>
+                        <li><a href="#">会社概要</a></li>
+                        <li><a href="#">お問い合わせ</a></li>
+                    </ul>
+                </nav>
 
-    section {
-      padding: 2rem 1.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+                <button class="menu-btn">☰</button>
+            </div>
+        </header>
 
-    section h2 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
+        <main>
+            <section class="picture">
+                <img src="images/image1.png" class="slide active" alt="運動">   <!-- activeが今表示中の画像 -->
+                <img src="images/image2.png" class="slide" alt="家">
+                <img src="images/image3.png" class="slide" alt="ごはん">
+            </section>
 
-    .services {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
+            <section class="us">
+                <h2>私たちについて</h2>
+                <p>外壁・屋根塗装を行っています。</p>
+            </section>
+        </main>
 
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 1.2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
+        <footer>
+            <p>© 〇〇塗装</p>
+        </footer>
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #777;
-    }
+        <script>
+            /* JavaScript(動作系) */
+            // ナビゲーション
+            const menuBtn = document.querySelector(".menu-btn");
+            const nav = document.querySelector(".nav");
 
-    @media (min-width: 768px) {
-      .services {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-  </style>
-</head>
+            menuBtn.addEventListener("click", () => {
+                nav.classList.toggle("open");
+            }); // ハンバーガーボタンをクリックして、.navに.open が付いたら表示する
 
-<body>
-  <header>
-    <h1>はじめての塗装でも、<br>安心して相談できる塗装屋です</h1>
-    <p>おうちも、お店も。ていねいに、やさしく仕上げます。</p>
-    <a href="#contact" class="btn">まずは無料で相談する</a>
-  </header>
+            // 画像自動切り替え
+            const slides = document.querySelectorAll(".slide");
+            let current = 0;
 
-  <section>
-    <h2>対応していること</h2>
-    <div class="services">
-      <div class="card">🏠 戸建て住宅の外壁・屋根塗装</div>
-      <div class="card">🏢 店舗・事務所の塗装</div>
-      <div class="card">🧱 部分補修・小さな塗り替え</div>
-      <div class="card">🎨 色の相談・アドバイス</div>
-    </div>
-    <p style="margin-top:1rem;">
-      「こんな小さいこと頼んでいいのかな？」<br>
-      と思う内容でも、気軽に聞いてください。
-    </p>
-  </section>
-
-  <section>
-    <h2>私たちの想い</h2>
-    <p>
-      塗装は、ただ色を塗るだけの作業ではなく、<br>
-      大切な建物を長く守るための仕事だと考えています。
-    </p>
-    <p>
-      はじめてで不安な方にも、<br>
-      専門用語を使わず、分かる言葉で説明することを大切にしています。
-    </p>
-  </section>
-
-  <section id="contact">
-    <h2>お問い合わせ</h2>
-    <p>
-      相談だけでも大丈夫です。<br>
-      しつこい営業はしませんので、安心してご連絡ください。
-    </p>
-    <p>
-      ▶ <a href="https://forms.gle/xxxxxxxx" target="_blank">お問い合わせフォームはこちら</a>
-    </p>
-  </section>
-
-  <footer>
-    © やさしい塗装屋さん
-  </footer>
-</body>
+            setInterval(() => {
+                slides[current].classList.remove("active"); // 今の画像を消す
+                current = (current + 1) % slides.length;    // 次の画像番号にする
+                slides[current].classList.add("active");    // active を付ける
+            }, 4000); // 4秒ごとに繰り返す
+        </script>
+    </body>
 </html>
